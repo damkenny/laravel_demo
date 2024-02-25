@@ -2,9 +2,9 @@
 
 FROM php:8.1-fpm
 
-RUN apt-get update && apt-get install -y composer
-
 COPY my-app/ .
+
+RUN apt-get update && apt-get install -y composer
 
 WORKDIR /var/www/html
 
