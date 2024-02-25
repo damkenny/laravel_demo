@@ -1,19 +1,15 @@
+# laravel
+
 FROM php:8.1-fpm
 
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    unzip \
-    mysql-client
-
-RUN docker-php-ext-install -y pdo mbstring bcmath xml soap
-
-WORKDIR /var/www/html
+RUN apt-get update && apt-get install -y composer
 
 COPY my-app/ .
 
-RUN composer install --no-interaction --prefer-dist
+WORKDIR /var/www/html
+
+RUN composer install
 
 EXPOSE 80
 
-CMD ["php", "artisan", "serve", "--host", "0.0.0.0", "--port", "80"]
+CMD ["php", "artisan", "serve"]
