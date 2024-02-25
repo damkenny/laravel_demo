@@ -1,36 +1,43 @@
-# Base image with PHP and Nginx
-FROM php:8.1-apache
-
-# Set working directory
-WORKDIR /var/www/html
-
-# Copy composer.json and composer.lock
-COPY composer.json composer.lock .
+# Use the official PHP 7.4 image as base
+FROM php:7.4-fpm
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
-    --no-install-recommends \
     build-essential \
-    libssl-dev \
-    zlib1g-dev \
-    pdo-mysql \
-    mysqli \
-    libxml2-dev \
-    libcurl4-openssl-dev \
-    unzip
+    libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
+    locales \
+    zip \
+    jpegoptim optipng pngquant gifsicle \
+    vim \
+    unzip \
+    git \
+    curl
 
-# Install Composer and use it to install project dependencies
-RUN composer install --no-interaction --prefer-dist
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Copy application code
-COPY . .
+# Install extensions
+RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl
+RUN docker-php-ext-configure gd --with-jpeg=/usr/include/ --with-freetype=/usr/include/
+RUN docker-php-ext-install gd
 
-# Expose web server port
-EXPOSE 80
+# Install composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Configure environment variables
-ENV APP_ENV production
-ENV APP_URL http://localhost:80
+# Set working directory
+WORKDIR /var/www
 
-# Start the Nginx server
-CMD ["apache2-foreground"]
+# Remove the default nginx index.php
+RUN rm -rf /var/www/html
+
+# Copy existing application directory permissions
+COPY --chown=www-data:www-data . /var/www
+
+# Change current user to www
+USER www-data
+
+# Expose port 9000 and start php-fpm server
+EXPOSE 9000
+CMD ["php-fpm"]
