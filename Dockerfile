@@ -3,7 +3,8 @@ FROM php:8.1-fpm
 RUN apt-get update && apt-get install -y \
     git \
     curl \
-    unzip
+    unzip \
+    mysql-client \
 
 RUN docker-php-ext-install -y pdo mbstring bcmath xml soap
 
