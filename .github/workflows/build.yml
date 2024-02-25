@@ -25,4 +25,4 @@ jobs:
         context: .
         push: true
         tags: davidebube/laravel-demo:latest
-        builder: heroku/buildpacks:20
+        # builder: heroku/buildpacks:20
