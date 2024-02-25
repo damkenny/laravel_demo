@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     unzip \
-    mysql-client \
+    mysql-client
 
 RUN docker-php-ext-install -y pdo mbstring bcmath xml soap
 
