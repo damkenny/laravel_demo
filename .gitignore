@@ -1,0 +1,41 @@
+# Dependencies
+/vendor/
+/node_modules/
+
+# Application Key
+.env
+
+# Testing
+/phpunit.xml
+/tests/Feature/*.json
+/tests/Unit/*.json
+
+# IDE Specific Files
+/.idea/
+/.vscode/
+
+# Artisan Cache
+/storage/framework/
+/storage/logs/
+/bootstrap/cache/
+/public/cache/
+
+# Package Manager Lock Files
+composer.lock
+package-lock.json
+
+# Laravel Installer
+/public/install.php
+
+# Additional Files
+*.env.*
+README.md.bak
+CHANGELOG.md.bak
+
+# Temporary Files
+*.log
+*.lock
+*~
+
+# Other Editors
+/.DS_Store
