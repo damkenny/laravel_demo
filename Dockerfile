@@ -26,10 +26,7 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 # Install project dependencies
 # RUN composer install --optimize-autoloader --no-dev
 
-
-WORKDIR /var/www/html
-
-RUN composer install
+# RUN composer install
 
 EXPOSE 9000
 
