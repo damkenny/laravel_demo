@@ -5,6 +5,8 @@ FROM php:8.1
 # Set the working directory in the container
 WORKDIR /var/www/html
 
+RUN composer install
+
 COPY my-app/ .
 
 # Install dependencies
