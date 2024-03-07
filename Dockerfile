@@ -8,7 +8,7 @@ WORKDIR /var/www/html
 COPY my-app/ .
 
 # Install dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt update && apt install -y \
     git \
     curl \
     libpng-dev \
