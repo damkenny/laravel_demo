@@ -1,11 +1,9 @@
 # laravel
 
-FROM php:8.1
+FROM composer:lts
 
 # Set the working directory in the container
 WORKDIR /var/www/html
-
-RUN composer install
 
 COPY my-app/ .
 
