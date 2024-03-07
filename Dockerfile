@@ -8,14 +8,14 @@ WORKDIR /var/www/html
 COPY my-app/ .
 
 # Install dependencies
-RUN apt update && apt install -y \
-    git \
-    curl \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    zip \
-    unzip
+# RUN apt update && apt install -y \
+#     git \
+#     curl \
+#     libpng-dev \
+#     libonig-dev \
+#     libxml2-dev \
+#     zip \
+#     unzip
     
 # Install PHP extensions
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
